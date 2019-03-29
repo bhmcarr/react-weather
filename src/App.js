@@ -3,24 +3,38 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+  renderCard(i){
+    return(
+      <Card
+        value={i}
+        day={i}
+      />
+
+    );
+  }
+
+  render(){
+    return(
+      <div>
+        {this.renderCard("Monday")}
       </div>
+    );
+  }
+}
+
+class Card extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      high_temp: 0,
+      low_temp: 0,
+      day: this.props.day,
+    };
+  }
+
+  render(){
+    return(
+      <p>{this.state.day}</p>
     );
   }
 }
