@@ -7,6 +7,14 @@ function getWeatherData(){
 }
 
 class App extends Component {
+  renderTitleBar(i){
+    return(
+      <TitleBar
+        city={i}
+      />
+    );
+  }
+
   renderCard(i,j,k,l){
     return(
       <Card
@@ -23,14 +31,17 @@ class App extends Component {
     const cloud = "/img/cloud.png";
     const sun = "/img/sun.png";
     return(
-      <div>
-          {this.renderCard("Monday", 10, 5, cloud)}
-          {this.renderCard("Tuesday", 10, 5, sun)}
-          {this.renderCard("Wednesday", 10, 5, sun)}
-          {this.renderCard("Thursday", 10, 5, sun)}
-          {this.renderCard("Friday", 10, 5, cloud)}
-          {this.renderCard("Saturday", 10, 5, cloud)}
-          {this.renderCard("Sunday", 10, 5, sun)}
+      <div className="app_wrapper">
+        <div className="app">
+            {this.renderTitleBar("Buffalo")}
+            {this.renderCard("Monday", 10, 5, cloud)}
+            {this.renderCard("Tuesday", 10, 5, sun)}
+            {this.renderCard("Wednesday", 10, 5, sun)}
+            {this.renderCard("Thursday", 10, 5, sun)}
+            {this.renderCard("Friday", 10, 5, cloud)}
+            {this.renderCard("Saturday", 10, 5, cloud)}
+            {this.renderCard("Sunday", 10, 5, sun)}
+        </div>
       </div>
     );
   }
@@ -54,6 +65,33 @@ class Card extends Component {
         <p className="temp_text">High: {this.state.highTemp}</p>
         <p className="temp_text">Low: {this.state.lowTemp}</p>
         <img src={this.state.imageLink} className="weather_icon"></img>
+      </div>
+    );
+  }
+}
+
+class TitleBar extends Component {
+  constructor(props){
+    super (props);
+    var date = new Date();
+    this.state = {
+        city: this.props.city,
+        month: date.getMonth() + 1,
+        hours: date.getHours(),
+        minutes: date.getMinutes(),
+    };
+  }
+
+  render(){
+    return(
+      <div className="title_bar">
+        <div className="tb_float_left">
+          <p>{this.state.city}</p>
+        </div>
+        <div className="tb_float_right">
+          <p>{this.state.hours}:{this.state.minutes}</p>
+        </div>
+        <div className="clearBoth"></div>
       </div>
     );
   }
