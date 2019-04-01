@@ -7,10 +7,25 @@ function getWeatherData(){
 }
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      city: "Buffalo",
+    };
+  }
+
   renderTitleBar(i){
     return(
       <TitleBar
         city={i}
+      />
+    );
+  }
+
+  renderBottomBar(){
+    return(
+      <BottomBar
+        onClick={() => this.handleCityUpdate()}
       />
     );
   }
@@ -27,13 +42,17 @@ class App extends Component {
     );
   }
 
+  handleCityUpdate(){
+    this.setState({city: "Lewiston"});
+  }
+
   render(){
     const cloud = "/img/cloud.png";
     const sun = "/img/sun.png";
     return(
       <div className="app_wrapper">
         <div className="app">
-            {this.renderTitleBar("Buffalo")}
+            {this.renderTitleBar(this.state.city)}
             {this.renderCard("Monday", 10, 5, cloud)}
             {this.renderCard("Tuesday", 10, 5, sun)}
             {this.renderCard("Wednesday", 10, 5, sun)}
@@ -41,6 +60,7 @@ class App extends Component {
             {this.renderCard("Friday", 10, 5, cloud)}
             {this.renderCard("Saturday", 10, 5, cloud)}
             {this.renderCard("Sunday", 10, 5, sun)}
+            {this.renderBottomBar()}
         </div>
       </div>
     );
@@ -51,10 +71,10 @@ class Card extends Component {
   constructor(props){
     super(props);
     this.state = {
-      highTemp:  this.props.highTemp,
-      lowTemp:   this.props.lowTemp,
+      highTemp:   this.props.highTemp,
+      lowTemp:    this.props.lowTemp,
       day:        this.props.day,
-      imageLink: this.props.imageLink,
+      imageLink:  this.props.imageLink,
     };
   }
 
@@ -75,9 +95,9 @@ class TitleBar extends Component {
     super (props);
     var date = new Date();
     this.state = {
-        city: this.props.city,
-        month: date.getMonth() + 1,
-        hours: date.getHours(),
+        city:    this.props.city,
+        month:   date.getMonth() + 1,
+        hours:   date.getHours(),
         minutes: date.getMinutes(),
     };
   }
@@ -92,6 +112,16 @@ class TitleBar extends Component {
           <p>{this.state.hours}:{this.state.minutes}</p>
         </div>
         <div className="clearBoth"></div>
+      </div>
+    );
+  }
+}
+
+class BottomBar extends Component {
+  render(){
+    return(
+      <div className="bottom_bar">
+        test
       </div>
     );
   }

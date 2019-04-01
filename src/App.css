@@ -48,6 +48,13 @@
   clear: both;
 }
 
+.bottom_bar{
+  width: 712px;
+  border-style: solid;
+  border-width: 1px;
+  background-color: #2980b9;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
