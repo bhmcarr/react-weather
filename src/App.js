@@ -9,6 +9,7 @@ class App extends Component {
       hours:   date.getHours(),
       minutes: date.getMinutes(),
       city: "Buffalo",
+      daysOfWeek: Array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"),
     };
   }
 
@@ -27,6 +28,7 @@ class App extends Component {
       <BottomBar
         clickTown={() => this.handleCityUpdate()}
         clickTime={() => this.handleTimeChange()}
+        clickDays={() => this.handleDayShuffle()}
       />
     );
   }
@@ -36,6 +38,11 @@ class App extends Component {
   }
   handleTimeChange(){
     this.setState({hours:0, minutes: "00"});
+  }
+  handleDayShuffle(){
+    var arr = this.state.daysOfWeek;
+    arr = shuffle(arr);
+    this.setState({daysOfWeek: arr});
   }
 
   renderCard(i,j,k,l){
@@ -57,13 +64,13 @@ class App extends Component {
       <div className="app_wrapper">
         <div className="app">
             {this.renderTitleBar(this.state.city, this.state.hours, this.state.minutes)}
-            {this.renderCard("Monday", 10, 5, cloud)}
-            {this.renderCard("Tuesday", 10, 5, sun)}
-            {this.renderCard("Wednesday", 10, 5, sun)}
-            {this.renderCard("Thursday", 10, 5, sun)}
-            {this.renderCard("Friday", 10, 5, cloud)}
-            {this.renderCard("Saturday", 10, 5, cloud)}
-            {this.renderCard("Sunday", 10, 5, sun)}
+            {this.renderCard(this.state.daysOfWeek[0], 10, 5, cloud)}
+            {this.renderCard(this.state.daysOfWeek[1], 10, 5, sun)}
+            {this.renderCard(this.state.daysOfWeek[2], 10, 5, sun)}
+            {this.renderCard(this.state.daysOfWeek[3], 10, 5, sun)}
+            {this.renderCard(this.state.daysOfWeek[4], 10, 5, cloud)}
+            {this.renderCard(this.state.daysOfWeek[5], 10, 5, cloud)}
+            {this.renderCard(this.state.daysOfWeek[6], 10, 5, sun)}
             {this.renderBottomBar()}
         </div>
       </div>
@@ -85,7 +92,7 @@ class Card extends Component {
   render(){
     return(
       <div className="card">
-        <p className="day_text">{this.state.day}</p>
+        <p className="day_text">{this.props.day}</p>
         <p className="temp_text">High: {this.state.highTemp}</p>
         <p className="temp_text">Low: {this.state.lowTemp}</p>
         <img src={this.state.imageLink} className="weather_icon"></img>
@@ -111,11 +118,31 @@ function TitleBar(props) {
 function BottomBar(props){
     return(
       <div className="bottom_bar">
-        Test options:
+        Fun test options:
         <button onClick={() => props.clickTown()}>set city to Lewiston</button>
         <button onClick={() => props.clickTime()}>set time to midnight</button>
+        <button onClick={() => props.clickDays()}>shuffle days of week</button>
       </div>
     );
+}
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
 }
 
 export default App;
