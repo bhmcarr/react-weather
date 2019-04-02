@@ -12,7 +12,13 @@
   height: 200px;
   border-style: solid;
   border-width: 1px;
+  border-radius: 15px;
   text-align: center;
+  background-color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .day_text {
@@ -30,9 +36,11 @@
 }
 
 .title_bar {
-  width: 712px;
+  margin-top: 10px;
+  width: 854px;
   border-style: solid;
   border-width: 1px;
+  border-radius: 15px;
   background-color: #2980b9;
 }
 
@@ -49,10 +57,13 @@
 }
 
 .bottom_bar{
-  width: 712px;
+  width: 854px;
   border-style: solid;
   border-width: 1px;
+  border-radius: 15px;
   background-color: #2980b9;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 @keyframes App-logo-spin {
