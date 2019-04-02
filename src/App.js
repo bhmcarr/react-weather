@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import './App.css';
 
-// this sucks, get rid of it
-function getWeatherData(){
-  const appId='8a1a6ea7368ab7181ac5cbc8566ef7de';
-}
-
 class App extends Component {
   constructor(props){
     super(props);
+    var date = new Date();
     this.state = {
+      hours:   date.getHours(),
+      minutes: date.getMinutes(),
       city: "Buffalo",
     };
   }
 
-  renderTitleBar(i){
+  renderTitleBar(i,j,k){
     return(
       <TitleBar
         city={i}
+        hours={j}
+        minutes={k}
       />
     );
   }
@@ -25,9 +25,17 @@ class App extends Component {
   renderBottomBar(){
     return(
       <BottomBar
-        onClick={() => this.handleCityUpdate()}
+        clickTown={() => this.handleCityUpdate()}
+        clickTime={() => this.handleTimeChange()}
       />
     );
+  }
+
+  handleCityUpdate(){
+    this.setState({city: "Lewiston"});
+  }
+  handleTimeChange(){
+    this.setState({hours:0, minutes: "00"});
   }
 
   renderCard(i,j,k,l){
@@ -42,17 +50,13 @@ class App extends Component {
     );
   }
 
-  handleCityUpdate(){
-    this.setState({city: "Lewiston"});
-  }
-
   render(){
     const cloud = "/img/cloud.png";
     const sun = "/img/sun.png";
     return(
       <div className="app_wrapper">
         <div className="app">
-            {this.renderTitleBar(this.state.city)}
+            {this.renderTitleBar(this.state.city, this.state.hours, this.state.minutes)}
             {this.renderCard("Monday", 10, 5, cloud)}
             {this.renderCard("Tuesday", 10, 5, sun)}
             {this.renderCard("Wednesday", 10, 5, sun)}
@@ -90,41 +94,28 @@ class Card extends Component {
   }
 }
 
-class TitleBar extends Component {
-  constructor(props){
-    super (props);
-    var date = new Date();
-    this.state = {
-        city:    this.props.city,
-        month:   date.getMonth() + 1,
-        hours:   date.getHours(),
-        minutes: date.getMinutes(),
-    };
-  }
-
-  render(){
+function TitleBar(props) {
     return(
       <div className="title_bar">
         <div className="tb_float_left">
-          <p>{this.state.city}</p>
+          <p>{props.city}</p>
         </div>
         <div className="tb_float_right">
-          <p>{this.state.hours}:{this.state.minutes}</p>
+          <p>{props.hours}:{props.minutes}</p>
         </div>
         <div className="clearBoth"></div>
       </div>
     );
-  }
 }
 
-class BottomBar extends Component {
-  render(){
+function BottomBar(props){
     return(
       <div className="bottom_bar">
-        test
+        Test options:
+        <button onClick={() => props.clickTown()}>set city to Lewiston</button>
+        <button onClick={() => props.clickTime()}>set time to midnight</button>
       </div>
     );
-  }
 }
 
 export default App;
