@@ -10,7 +10,24 @@ class App extends Component {
       minutes: date.getMinutes(),
       city: "Buffalo",
       daysOfWeek: Array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"),
+      weatherData: null,
     };
+    var response = this.getWeatherData(this.state.city);
+    this.state.weatherData = response;
+  }
+
+  getWeatherData(i){
+    const appId="8a1a6ea7368ab7181ac5cbc8566ef7de";
+    const URL = "https://api.openweathermap.org/data/2.5/weather?q=" + i + "&cnt=7&units=imperial&APPID=" +  appId;
+
+    let headers = new Headers();
+
+    return fetch(URL, {
+      method: 'GET',
+      headers: headers
+    }).then(data => {
+      return data.json();
+      });
   }
 
   renderTitleBar(i,j,k){
