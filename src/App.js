@@ -65,7 +65,17 @@ class App extends Component {
         lowTemp={k}
         imageLink={l}
       />
+    );
+  }
 
+  renderMainCard(i,j,k,l){
+    return(
+      <MainCard
+        day={i}
+        highTemp={j}
+        lowTemp={k}
+        imageLink={l}
+      />
     );
   }
 
@@ -76,6 +86,10 @@ class App extends Component {
       <div className="app_wrapper">
         <div className="app">
             {this.renderTitleBar(this.state.city, this.state.hours, this.state.minutes)}
+        <div className="main_card_wrapper">
+            {this.renderMainCard(this.state.daysOfWeek[0], 10, 5, cloud)}
+        </div>
+        <div className="week_cards">
             {this.renderCard(this.state.daysOfWeek[0], 10, 5, cloud)}
             {this.renderCard(this.state.daysOfWeek[1], 10, 5, sun)}
             {this.renderCard(this.state.daysOfWeek[2], 10, 5, sun)}
@@ -83,6 +97,7 @@ class App extends Component {
             {this.renderCard(this.state.daysOfWeek[4], 10, 5, cloud)}
             {this.renderCard(this.state.daysOfWeek[5], 10, 5, cloud)}
             {this.renderCard(this.state.daysOfWeek[6], 10, 5, sun)}
+        </div>
             {this.renderBottomBar()}
         </div>
       </div>
@@ -108,6 +123,29 @@ class Card extends Component {
         <p className="temp_text">High: {this.state.highTemp}</p>
         <p className="temp_text">Low: {this.state.lowTemp}</p>
         <img src={this.state.imageLink} className="weather_icon" alt="icon"></img>
+      </div>
+    );
+  }
+}
+
+class MainCard extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      highTemp:   this.props.highTemp,
+      lowTemp:    this.props.lowTemp,
+      day:        this.props.day,
+      imageLink:  this.props.imageLink,
+    };
+  }
+
+  render(){
+    return (
+      <div className="main_card">
+        <p className="main_day_text">{this.props.day}</p>
+        <p className="main_temp_text">High: {this.state.highTemp}</p>
+        <p className="main_temp_text">Low: {this.state.lowTemp}</p>
+        <img src={this.state.imageLink} className="main_weather_icon" alt="icon"></img>
       </div>
     );
   }
