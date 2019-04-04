@@ -4,7 +4,6 @@ import Card from './Card.js';
 import TitleBar from './TitleBar.js';
 import MainCard from './MainCard.js';
 import BottomBar from './BottomBar.js';
-import shuffle from './shuffle.js';
 
 class App extends Component {
   constructor(props){
@@ -43,23 +42,8 @@ class App extends Component {
   renderBottomBar(){
     return(
       <BottomBar
-        clickTown={() => this.handleCityUpdate()}
-        clickTime={() => this.handleTimeChange()}
-        clickDays={() => this.handleDayShuffle()}
       />
     );
-  }
-
-  handleCityUpdate(){
-    this.setState({city: "Lewiston"});
-  }
-  handleTimeChange(){
-    this.setState({hours:0, minutes: "00"});
-  }
-  handleDayShuffle(){
-    var arr = this.state.daysOfWeek;
-    arr = shuffle(arr);
-    this.setState({daysOfWeek: arr});
   }
 
   renderCard(i,j,k,l){
