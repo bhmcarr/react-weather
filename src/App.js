@@ -10,21 +10,19 @@ class App extends Component {
       minutes: date.getMinutes(),
       city: "Buffalo",
       daysOfWeek: Array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"),
+      weatherData: null,
     };
+    // get weather data here when app is created
     this.getWeatherData();
   }
 
   getWeatherData(){
     const appId="8a1a6ea7368ab7181ac5cbc8566ef7de";
-    const URL = "https://api.openweathermap.org/data/2.5/weather?q=Buffalo&cnt=7&units=imperial&APPID=" +  appId;
+    const URL = "https://api.openweathermap.org/data/2.5/weather?q=" + this.state.city + "&cnt=7&units=imperial&APPID=" +  appId;
 
     fetch(URL)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(myJson) {
-      console.log(JSON.stringify(myJson));
-    });
+      .then(response => response.json())
+      .then(data => this.setState({weatherData:data}));
   }
 
   renderTitleBar(i,j,k){
@@ -109,7 +107,7 @@ class Card extends Component {
         <p className="day_text">{this.props.day}</p>
         <p className="temp_text">High: {this.state.highTemp}</p>
         <p className="temp_text">Low: {this.state.lowTemp}</p>
-        <img src={this.state.imageLink} className="weather_icon"></img>
+        <img src={this.state.imageLink} className="weather_icon" alt="icon"></img>
       </div>
     );
   }
