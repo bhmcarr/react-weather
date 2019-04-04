@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
+import Card from './Card.js';
+import TitleBar from './TitleBar.js';
+import MainCard from './MainCard.js';
+import BottomBar from './BottomBar.js';
+import shuffle from './shuffle.js';
 
 class App extends Component {
   constructor(props){
@@ -103,96 +108,6 @@ class App extends Component {
       </div>
     );
   }
-}
-
-class Card extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      highTemp:   this.props.highTemp,
-      lowTemp:    this.props.lowTemp,
-      day:        this.props.day,
-      imageLink:  this.props.imageLink,
-    };
-  }
-
-  render(){
-    return(
-      <div className="card">
-        <p className="day_text">{this.props.day}</p>
-        <p className="temp_text">High: {this.state.highTemp}</p>
-        <p className="temp_text">Low: {this.state.lowTemp}</p>
-        <img src={this.state.imageLink} className="weather_icon" alt="icon"></img>
-      </div>
-    );
-  }
-}
-
-class MainCard extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      highTemp:   this.props.highTemp,
-      lowTemp:    this.props.lowTemp,
-      day:        this.props.day,
-      imageLink:  this.props.imageLink,
-    };
-  }
-
-  render(){
-    return (
-      <div className="main_card">
-        <p className="main_day_text">{this.props.day}</p>
-        <p className="main_temp_text">High: {this.state.highTemp}</p>
-        <p className="main_temp_text">Low: {this.state.lowTemp}</p>
-        <img src={this.state.imageLink} className="main_weather_icon" alt="icon"></img>
-      </div>
-    );
-  }
-}
-
-function TitleBar(props) {
-    return(
-      <div className="title_bar">
-        <div className="tb_float_left">
-          <p>{props.city}</p>
-        </div>
-        <div className="tb_float_right">
-          <p>{props.hours}:{props.minutes}</p>
-        </div>
-        <div className="clearBoth"></div>
-      </div>
-    );
-}
-
-function BottomBar(props){
-    return(
-      <div className="bottom_bar">
-        Fun test options:
-        <button onClick={() => props.clickTown()}>set city to Lewiston</button>
-        <button onClick={() => props.clickTime()}>set time to midnight</button>
-        <button onClick={() => props.clickDays()}>shuffle days of week</button>
-      </div>
-    );
-}
-
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
-
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
 }
 
 export default App;
