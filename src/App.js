@@ -57,15 +57,12 @@ class App extends Component {
   }
 
   renderMainCard(i,l){
-    if(this.state.weatherData.length > 0){
-      var j = this.state.weatherData.main.temp_max;
-      var k = this.state.weatherData.main.temp_min;
-    }
+    var j = this.state.weatherData;
+
     return(
       <MainCard
         day={i}
-        highTemp= {j}
-        lowTemp= {k}
+        data={j}
         imageLink={l}
       />
     );
