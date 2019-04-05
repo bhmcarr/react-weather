@@ -13,20 +13,19 @@ class App extends Component {
       hours:   date.getHours(),
       minutes: date.getMinutes(),
       city: "Buffalo",
-      daysOfWeek: Array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"),
-      weatherData: null,
+      daysOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      weatherData: [],
     };
-    // get weather data here when app is created
-    this.getWeatherData();
   }
 
-  getWeatherData(){
-    const appId="8a1a6ea7368ab7181ac5cbc8566ef7de";
+  componentDidMount(){
+    const appId="b6fd93a747972ebea2d0b6ae6dc84c8b";
     const URL = "https://api.openweathermap.org/data/2.5/weather?q=" + this.state.city + "&cnt=7&units=imperial&APPID=" +  appId;
 
     fetch(URL)
       .then(response => response.json())
-      .then(data => this.setState({weatherData:data}));
+      .then(data => this.setState({weatherData:data}))
+      .catch(error => console.error(error));
   }
 
   renderTitleBar(i,j,k){
@@ -57,12 +56,16 @@ class App extends Component {
     );
   }
 
-  renderMainCard(i,j,k,l){
+  renderMainCard(i,l){
+    if(this.state.weatherData.length > 0){
+      var j = this.state.weatherData.main.temp_max;
+      var k = this.state.weatherData.main.temp_min;
+    }
     return(
       <MainCard
         day={i}
-        highTemp={j}
-        lowTemp={k}
+        highTemp= {j}
+        lowTemp= {k}
         imageLink={l}
       />
     );
@@ -76,7 +79,7 @@ class App extends Component {
         <div className="app">
             {this.renderTitleBar(this.state.city, this.state.hours, this.state.minutes)}
         <div className="main_card_wrapper">
-            {this.renderMainCard(this.state.daysOfWeek[0], 10, 5, cloud)}
+            {this.renderMainCard(this.state.daysOfWeek[0], cloud)}
         </div>
         <div className="week_cards">
             {this.renderCard(this.state.daysOfWeek[0], 10, 5, cloud)}

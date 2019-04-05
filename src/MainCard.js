@@ -14,7 +14,7 @@ class MainCard extends Component {
   render(){
     return (
       <div className="main_card">
-        <p className="main_day_text">{this.props.day}</p>
+        <p className="main_day_text">{this.state.day}</p>
         <p className="main_temp_text">High: {this.state.highTemp}</p>
         <p className="main_temp_text">Low: {this.state.lowTemp}</p>
         <img src={this.state.imageLink} className="main_weather_icon" alt="icon"></img>

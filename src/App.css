@@ -6,9 +6,14 @@
   display: inline-block;
 }
 
+.main_card_wrapper{
+
+}
+
 .main_card{
-  display:inline-block;
-  width: 700px;
+  text-align: center;
+  display: inline-block;
+  width: 500px;
   height: 200px;
   border-style: solid;
   border-width: 2px;
@@ -38,7 +43,8 @@
 }
 
 .main_day_text {
-  font-size: 16px;
+  margin-top: 1px;
+  font-size: 30px;
   font-weight: bold;
 }
 
@@ -47,8 +53,10 @@
 }
 
 .main_weather_icon {
-  width: 50px;
-  height: 50px;
+  width: 75px;
+  height: 75px;
+  display: inline-block;
+  margin-bottom: 1px;
 }
 
 .day_text {
