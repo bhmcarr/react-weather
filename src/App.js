@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import './App.css';
 import Card from './Card.js';
 import TitleBar from './TitleBar.js';
-import MainCard from './MainCard.js';
-import BottomBar from './BottomBar.js';
 
 class App extends Component {
   constructor(props){
     super(props);
     var date = new Date();
+    const daysOfWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+    var forecastDays = [date.getDay(), date.getDay()+1, date.getDay()+2, date.getDay()+3, date.getDay()+4];
     this.state = {
       hours:   date.getHours(),
       minutes: date.getMinutes(),
       city: "Buffalo",
-      daysOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
       weatherData: [],
+      forecastDays: forecastDays,
     };
   }
 
@@ -38,33 +38,13 @@ class App extends Component {
     );
   }
 
-  renderBottomBar(){
-    return(
-      <BottomBar
-      />
-    );
-  }
-
-  renderCard(i,l){
-    var j = this.state.weatherData;
-
+  renderCard(i,j,k){
     return(
       <Card
         day={i}
-        data={j}
-        imageLink={l}
-      />
-    );
-  }
-
-  renderMainCard(i,l){
-    var j = this.state.weatherData;
-
-    return(
-      <MainCard
-        day={i}
-        data={j}
-        imageLink={l}
+        dayId={j}
+        imageLink={k}
+        data={this.state.weatherData}
       />
     );
   }
@@ -76,17 +56,13 @@ class App extends Component {
       <div className="app_wrapper">
         <div className="app">
             {this.renderTitleBar(this.state.city, this.state.hours, this.state.minutes)}
-        <div className="main_card_wrapper">
-            {this.renderMainCard(0, cloud)}
         </div>
         <div className="week_cards">
-            {this.renderCard(0, cloud)}
-            {this.renderCard(1, sun)}
-            {this.renderCard(2, sun)}
-            {this.renderCard(3, sun)}
-            {this.renderCard(4, cloud)}
-        </div>
-            {this.renderBottomBar()}
+            {this.renderCard(0, this.state.forecastDays[0], cloud)}
+            {this.renderCard(1, this.state.forecastDays[1], sun)}
+            {this.renderCard(2, this.state.forecastDays[2], sun)}
+            {this.renderCard(3, this.state.forecastDays[3], sun)}
+            {this.renderCard(4, this.state.forecastDays[4], cloud)}
         </div>
       </div>
     );
