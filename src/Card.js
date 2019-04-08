@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class Card extends Component {
   constructor(props){
     super(props);
-    var date = new Date()
     const daysOfWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
     var day = daysOfWeek[this.props.day];
     this.state = {

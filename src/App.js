@@ -7,7 +7,6 @@ class App extends Component {
   constructor(props){
     super(props);
     var date = new Date();
-    const daysOfWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
     var forecastDays = [date.getDay(), date.getDay()+1, date.getDay()+2, date.getDay()+3, date.getDay()+4];
     this.state = {
       hours:   date.getHours(),
