@@ -21,8 +21,8 @@ class MainCard extends Component {
     return (
       <div className="main_card">
         <p className="main_day_text">{this.state.day}</p>
-        <p className="main_temp_text">High: {this.props.data.main.temp_max}</p>
-        <p className="main_temp_text">Low: {this.props.data.main.temp_min}</p>
+        <p className="main_temp_text">High: {this.props.data.list[0].main.temp_max}</p>
+        <p className="main_temp_text">Low: {this.props.data.list[0].main.temp_min}</p>
         <img src={this.props.imageLink} className="main_weather_icon" alt="icon"></img>
       </div>
     );

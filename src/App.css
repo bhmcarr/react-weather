@@ -15,10 +15,10 @@
   display: inline-block;
   width: 500px;
   height: 200px;
-  border-style: solid;
+  /* border-style: solid;
   border-width: 2px;
   border-radius: 15px;
-  border-color: grey;
+  border-color: grey; */
   background-color: white;
   margin-left: 10px;
   margin-right: 10px;
@@ -75,7 +75,7 @@
 
 .title_bar {
   margin-top: 10px;
-  width: 854px;
+  width: 868px;
   border-style: solid;
   border-width: 2px;
   border-radius: 15px;
@@ -96,7 +96,7 @@
 }
 
 .bottom_bar{
-  width: 854px;
+  width: 868px;
   border-style: solid;
   border-width: 2px;
   border-radius: 15px;

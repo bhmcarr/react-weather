@@ -20,7 +20,7 @@ class App extends Component {
 
   componentDidMount(){
     const appId="b6fd93a747972ebea2d0b6ae6dc84c8b";
-    const URL = "https://api.openweathermap.org/data/2.5/weather?q=" + this.state.city + "&cnt=7&units=imperial&APPID=" +  appId;
+    const URL = "https://api.openweathermap.org/data/2.5/forecast?q=" + this.state.city + "&cnt=7&units=imperial&APPID=" +  appId;
 
     fetch(URL)
       .then(response => response.json())
@@ -45,12 +45,13 @@ class App extends Component {
     );
   }
 
-  renderCard(i,j,k,l){
+  renderCard(i,l){
+    var j = this.state.weatherData;
+
     return(
       <Card
         day={i}
-        highTemp={j}
-        lowTemp={k}
+        data={j}
         imageLink={l}
       />
     );
@@ -76,16 +77,14 @@ class App extends Component {
         <div className="app">
             {this.renderTitleBar(this.state.city, this.state.hours, this.state.minutes)}
         <div className="main_card_wrapper">
-            {this.renderMainCard(this.state.daysOfWeek[0], cloud)}
+            {this.renderMainCard(0, cloud)}
         </div>
         <div className="week_cards">
-            {this.renderCard(this.state.daysOfWeek[0], 10, 5, cloud)}
-            {this.renderCard(this.state.daysOfWeek[1], 10, 5, sun)}
-            {this.renderCard(this.state.daysOfWeek[2], 10, 5, sun)}
-            {this.renderCard(this.state.daysOfWeek[3], 10, 5, sun)}
-            {this.renderCard(this.state.daysOfWeek[4], 10, 5, cloud)}
-            {this.renderCard(this.state.daysOfWeek[5], 10, 5, cloud)}
-            {this.renderCard(this.state.daysOfWeek[6], 10, 5, sun)}
+            {this.renderCard(0, cloud)}
+            {this.renderCard(1, sun)}
+            {this.renderCard(2, sun)}
+            {this.renderCard(3, sun)}
+            {this.renderCard(4, cloud)}
         </div>
             {this.renderBottomBar()}
         </div>
