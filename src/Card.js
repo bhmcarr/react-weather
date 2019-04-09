@@ -21,8 +21,8 @@ class Card extends Component {
       return(
         <div className="left_card">
           <p className="day_text">{this.state.dayId}</p>
-          <p className="temp_text">High: {this.props.data.list[this.props.day].main.temp_max}</p>
-          <p className="temp_text">Low: {this.props.data.list[this.props.day].main.temp_min}</p>
+          <p className="temp_text">High: {this.props.data.list[this.props.day].main.temp_max}{'\u00B0'}</p>
+          <p className="temp_text">Low: {this.props.data.list[this.props.day].main.temp_min}{'\u00B0'}</p>
           <img src={this.props.imageLink} className="weather_icon" alt="icon"></img>
         </div>
       );
@@ -30,8 +30,8 @@ class Card extends Component {
     return(
       <div className="card">
         <p className="day_text">{this.state.dayId}</p>
-        <p className="temp_text">High: {this.props.data.list[this.props.day].main.temp_max}</p>
-        <p className="temp_text">Low: {this.props.data.list[this.props.day].main.temp_min}</p>
+        <p className="temp_text">High: {this.props.data.list[this.props.day].main.temp_max}{'\u00B0'}</p>
+        <p className="temp_text">Low: {this.props.data.list[this.props.day].main.temp_min}{'\u00B0'}</p>
         <img src={this.props.imageLink} className="weather_icon" alt="icon"></img>
       </div>
     );
