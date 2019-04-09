@@ -74,7 +74,7 @@ class App extends Component {
     const sun = "/img/sun.png";
     if (this.state.weatherData.length === 0) {
       return(
-        <span>If you can read this, there's a problem with the API.</span>
+        <span>Loading..</span>
       );
     }
     return(
