@@ -6,6 +6,10 @@
   display: inline-block;
 }
 
+.changeForm{
+  padding: 10px;
+}
+
 .left_card {
   border-color: grey;
   display: inline-block;
