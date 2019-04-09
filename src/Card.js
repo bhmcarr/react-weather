@@ -7,7 +7,7 @@ class Card extends Component {
     var day = daysOfWeek[this.props.day];
     this.state = {
       day: day,
-      dayId: daysOfWeek[this.props.dayId-1],
+      dayName: daysOfWeek[this.props.dayName-1],
     };
   }
 
@@ -20,7 +20,7 @@ class Card extends Component {
     if (this.props.day === 0){
       return(
         <div className="left_card">
-          <p className="day_text">{this.state.dayId}</p>
+          <p className="day_text">{this.state.dayName}</p>
           <p className="temp_text">High: {this.props.data.list[this.props.day].main.temp_max}{'\u00B0'}</p>
           <p className="temp_text">Low: {this.props.data.list[this.props.day].main.temp_min}{'\u00B0'}</p>
           <img src={this.props.imageLink} className="weather_icon" alt="icon"></img>
@@ -29,7 +29,7 @@ class Card extends Component {
     }
     return(
       <div className="card">
-        <p className="day_text">{this.state.dayId}</p>
+        <p className="day_text">{this.state.dayName}</p>
         <p className="temp_text">High: {this.props.data.list[this.props.day].main.temp_max}{'\u00B0'}</p>
         <p className="temp_text">Low: {this.props.data.list[this.props.day].main.temp_min}{'\u00B0'}</p>
         <img src={this.props.imageLink} className="weather_icon" alt="icon"></img>

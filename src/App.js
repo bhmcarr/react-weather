@@ -45,7 +45,7 @@ class App extends Component {
     return(
       <Card
         day={i}
-        dayId={j}
+        dayName={j}
         imageLink={k}
         data={this.state.weatherData}
       />
