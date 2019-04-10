@@ -41,12 +41,11 @@ class App extends Component {
     );
   }
 
-  renderCard(i,j,k){
+  renderCard(i,j){
     return(
       <Card
         day={i}
         dayName={j}
-        imageLink={k}
         data={this.state.weatherData}
       />
     );
@@ -70,8 +69,6 @@ class App extends Component {
   }
 
   render(){
-    const cloud = "/img/cloud.png";
-    const sun = "/img/sun.png";
     if (this.state.weatherData.length === 0) {
       return(
         <span>Loading..</span>
@@ -83,11 +80,11 @@ class App extends Component {
             {this.renderTitleBar(this.state.city, this.state.hours, this.state.minutes)}
         </div>
         <div className="week_cards">
-            {this.renderCard(0, this.state.forecastDays[0], cloud)}
-            {this.renderCard(1, this.state.forecastDays[1], sun)}
-            {this.renderCard(2, this.state.forecastDays[2], sun)}
-            {this.renderCard(3, this.state.forecastDays[3], sun)}
-            {this.renderCard(4, this.state.forecastDays[4], cloud)}
+            {this.renderCard(0, this.state.forecastDays[0])}
+            {this.renderCard(1, this.state.forecastDays[1])}
+            {this.renderCard(2, this.state.forecastDays[2])}
+            {this.renderCard(3, this.state.forecastDays[3])}
+            {this.renderCard(4, this.state.forecastDays[4])}
         </div>
         <div className="changeForm">
           <form onSubmit={this.handleSubmit}>
