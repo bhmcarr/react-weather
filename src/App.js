@@ -41,11 +41,11 @@ class App extends Component {
     );
   }
 
-  renderCard(i,j){
+  renderCard(i){
     return(
       <Card
         day={i}
-        dayName={j}
+        dayName={this.state.forecastDays[i]}
         data={this.state.weatherData}
       />
     );
@@ -80,11 +80,11 @@ class App extends Component {
             {this.renderTitleBar(this.state.city, this.state.hours, this.state.minutes)}
         </div>
         <div className="week_cards">
-            {this.renderCard(0, this.state.forecastDays[0])}
-            {this.renderCard(1, this.state.forecastDays[1])}
-            {this.renderCard(2, this.state.forecastDays[2])}
-            {this.renderCard(3, this.state.forecastDays[3])}
-            {this.renderCard(4, this.state.forecastDays[4])}
+            {this.renderCard(0)}
+            {this.renderCard(1)}
+            {this.renderCard(2)}
+            {this.renderCard(3)}
+            {this.renderCard(4)}
         </div>
         <div className="changeForm">
           <form onSubmit={this.handleSubmit}>
