@@ -7,7 +7,7 @@ class App extends Component {
   constructor(props){
     super(props);
     var date = new Date();
-    var forecastDays = [date.getDay(), date.getDay()+1, date.getDay()+2, date.getDay()+3, date.getDay()+4];
+    var forecastDays = this.makeWeekArray(date.getDay());
 
     this.handleCityChange = this.handleCityChange.bind(this);
     this.handleSubmit     = this.handleSubmit.bind(this);
@@ -29,6 +29,21 @@ class App extends Component {
       .then(response => response.json())
       .then(data => this.setState({weatherData:data}))
       .catch(error => console.error(error));
+  }
+
+  makeWeekArray(i){
+    // this was added because 'dates' in JS's Date() roll over but 'days' do not.
+    switch(i) {
+      case 0: return [0,1,2,3,4];
+      case 1: return [1,2,3,4,5];
+      case 2: return [2,3,4,5,6];
+      case 3: return [3,4,5,6,0];
+      case 4: return [4,5,6,0,1];
+      case 5: return [5,6,0,1,2];
+      case 6: return [6,0,1,2,3];
+      default:
+        console.log("Week array error.");
+    }
   }
 
   renderTitleBar(i,j,k){
@@ -63,7 +78,9 @@ class App extends Component {
     fetch(URL)
       .then(response => response.json())
       .then(data => this.setState({weatherData:data}))
-      .catch(error => console.error(error));
+      .catch(function(error){
+        this.setState({city: "Buffalo"});
+      });
 
     event.preventDefault();
   }
