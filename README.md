@@ -3,6 +3,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Running the app
 
 Just navigate to the project directory and run
-### $ npm start
+`npm start`
 
 You need node.js installed.
